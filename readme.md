@@ -1,83 +1,126 @@
-# Localhost Explorer
+# 🚀 Localhost Explorer
 
-Clean and interactive localhost dashboard to explore local projects and automatically detect frameworks and correct entry points.
+![Screenshot 1](./assets/screenshot-1.png)
+![Screenshot 2](./assets/screenshot-2.png)
 
-Localhost Explorer replaces the default Apache homepage with a modern, developer‑friendly dashboard that helps you navigate multiple local projects (PHP, JavaScript, and others) efficiently.
+> 🧭 **Clean, modern, and developer-friendly localhost dashboard**  
+> Stop scrolling through folders. Instantly see, detect, and open your local projects with the correct entry point.
 
 ---
 
-## ✨ Features
+## ✨ Why Localhost Explorer?
 
-* 📁 Browse local project folders (personal, work, learning, etc.)
-* 🔍 Automatic framework detection:
+If you work with **many local projects** (Laravel, Yii2, React, WordPress, etc.), the default Apache index quickly becomes messy and unproductive.
 
-  * Yii2 → `/web`
-  * Laravel → `/public`
-  * CodeIgniter 4 → `/public`
-  * Symfony → `/public`
-  * CakePHP → `/webroot`
-  * WordPress → root
-  * Plain PHP projects
-  * JavaScript projects (React, Vue, Next, Vite, etc.)
-* 🚀 Smart entry point routing (public, web, dist, build)
-* 🎨 Clean, modern, and responsive UI
-* 🔒 Secure path traversal protection
-* ⚡ Lightweight (pure PHP, no database)
+**Localhost Explorer replaces it with a smart dashboard** that:
+
+✅ Detects frameworks automatically  
+✅ Routes to the correct entry point  
+✅ Looks clean, modern, and fast  
+✅ Requires **zero configuration**
+
+---
+
+## 🔥 Features
+
+### 📁 Project Explorer
+- Browse all local project folders (personal, work, experiments)
+- Clean **card-based UI** with project grouping
+
+### 🔍 Automatic Framework Detection
+Supports popular frameworks out of the box:
+
+- 🟣 **Yii2** → `/web`
+- 🔴 **Laravel** → `/public`
+- 🟢 **CodeIgniter 4** → `/public`
+- 🔵 **Symfony** → `/public`
+- 🍰 **CakePHP** → `/webroot`
+- 📰 **WordPress** → root
+- 📄 Plain PHP projects
+- ⚛️ JavaScript projects (React, Vue, Next, Vite, etc.)
+
+### 🚀 Smart Entry Point Routing
+Automatically redirects to:
+- `public/`
+- `web/`
+- `webroot/`
+- `dist/`
+- `build/`
+
+No more guessing URLs.
+
+### 🎨 Developer-Friendly UI
+- Modern, responsive design
+- Framework badges
+- Easy scanning & navigation
+
+### 🔒 Secure by Default
+- Prevents directory traversal (`../`)
+- Restricts access to document root
+- Uses safe `realpath()` validation
+
+### ⚡ Lightweight
+- Pure PHP
+- No database
+- No framework dependency
 
 ---
 
 ## 🖥️ Preview
 
-> A clean card‑based interface showing all local projects with framework badges and automatic routing.
+> A modern dashboard displaying all local projects with framework badges, system info, and smart routing — replacing the default Apache welcome page.
 
 ---
 
-## 📂 Folder Structure Example
+## 📂 Example Folder Structure
 
-```
+```text
 /var/www/html
-├── index.php   (Localhost Explorer)
-├── personal/
-│   └── my-yii-app/
-├── work/
-│   └── laravel-project/
-├── learning/
-│   └── react-app/
-```
+├── index.php          # Localhost Explorer
+├── example-folder/
+│   ├── app-1/         # Plain PHP / standard folder
+│   ├── app-2/         # Laravel project
+│   ├── app-3/         # CodeIgniter 4 project
+│   ├── app-4/         # Yii2 project
+│   └── app-5/         # Node.js / JS project
+
+````
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation (1 Minute Setup)
 
-### 1. Place the file
+### 1️⃣ Copy the file
 
-Copy `index.php` into your Apache document root:
+Place `index.php` into your Apache document root:
 
-```
+```bash
 /var/www/html/index.php
 ```
 
-### 2. (Optional) Backup Apache default page
+### 2️⃣ (Optional) Backup Apache default page
 
 ```bash
 sudo mv /var/www/html/index.html /var/www/html/index.html.bak
 ```
 
-### 3. Open in browser
+### 3️⃣ Open in browser
 
-```
+```text
 http://localhost/
 ```
 
+🎉 Done. Your localhost just leveled up.
+
 ---
 
-## 🧠 How It Works
+## 🧠 How Detection Works
 
-Localhost Explorer scans directories and detects frameworks based on common files:
+Localhost Explorer scans each folder and detects frameworks based on well-known files:
 
-| Framework | Detection       | Entry Point         |
+| Framework | Detection File  | Entry Point         |
 | --------- | --------------- | ------------------- |
-| Yii2      | `yii` + `/web`  | `/web`              |
+| Yii2      | `yii`           | `/web`              |
 | Laravel   | `artisan`       | `/public`           |
 | CI4       | `spark`         | `/public`           |
 | Symfony   | `bin/console`   | `/public`           |
@@ -85,60 +128,66 @@ Localhost Explorer scans directories and detects frameworks based on common file
 | WordPress | `wp-config.php` | `/`                 |
 | JS Apps   | `package.json`  | `/dist` or `/build` |
 
-If no framework is detected, the folder is treated as a normal directory.
+📌 If no framework is detected, the folder is treated as a **standard directory**.
 
 ---
 
 ## 🧩 Supported JavaScript Projects
 
-* React (CRA, Vite)
-* Vue (Vue CLI, Vite)
-* Next.js
-* Vanilla JS
+* ⚛️ React (CRA, Vite)
+* 🟢 Vue (Vue CLI, Vite)
+* ▲ Next.js
+* 🧪 Vanilla JS
 
 > If no production build is found, the project will be marked as **JS (dev)**.
 
 ---
 
-## 🔐 Security
+## 🔐 Security Considerations
 
-* Prevents directory traversal (`../`)
-* Restricts access to document root only
-* Uses `realpath()` validation
+* 🚫 Blocks `../` path traversal
+* 🔒 Limits access strictly to document root
+* 🛡️ Uses `realpath()` validation everywhere
+
+Safe to use as a local development dashboard.
 
 ---
 
 ## 🚧 Roadmap
 
-* Auto detect running dev servers (3000, 5173, etc.)
-* Open dev server links directly
-* Dark mode
-* Project favorites / pinning
-* Docker & Python framework detection
+Planned improvements:
+
+* 🔎 Detect running dev servers (3000, 5173, etc.)
+* 🔗 Open dev server URLs directly
+* 🌙 Dark mode
+* ⭐ Favorite / pin projects
+* 🐳 Docker detection
+* 🐍 Python framework support
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome.
+Contributions are very welcome ❤️
 
 1. Fork the repository
-2. Create your feature branch
+2. Create a feature branch
 3. Commit your changes
 4. Open a pull request
+
+Ideas, issues, and feedback are appreciated.
 
 ---
 
 ## 📄 License
 
-MIT License
+MIT License — free to use, modify, and share.
 
 ---
 
 ## 👨‍💻 Author
 
-Built for developers who work with many local projects and want a clean, productive localhost experience.
+Built for developers who juggle **many local projects** and want a **clean, productive localhost experience**.
 
----
+If this tool helps you, consider ⭐ starring the repo!
 
-Happy coding 🚀
