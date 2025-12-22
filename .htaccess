@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Jangan rewrite asset
+RewriteRule ^assets/ - [L]
+
+# Jika file atau folder ada, jangan rewrite
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Semua request lain ke index.php
+RewriteRule ^ index.php [L]
