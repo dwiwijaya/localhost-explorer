@@ -75,7 +75,7 @@ $folders = getFolders($location['abs']);
                 <div class="relative w-full md:w-72">
                     <i class="ph-bold ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input
-                        disabled=<?php if (count($folders) === 0) echo 'true'; ?>
+                        <?php if (count($folders) === 0) echo 'disabled'; ?>
                         type="text" x-model="searchQuery" placeholder="Search projects..."
                         class="w-full pl-10 pr-4 py-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
                         >
