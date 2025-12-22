@@ -45,7 +45,7 @@ $style = $typeStyles[$info['projectType']] ?? $typeStyles[TYPE_DIRECTORY];
 
 <a
   href="<?= $href ?>"
-  target="_blank"
+  target="<?php echo $isApp ? '_blank' : '_self'; ?>"
   x-show="(filterType === 'ALL' || filterType === '<?= $info['projectType'] ?>') && (searchQuery === '' || '<?= strtolower(addslashes($name)) ?>'.includes(searchQuery.toLowerCase()))"
   class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden">
 
