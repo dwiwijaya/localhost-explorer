@@ -1,7 +1,6 @@
 <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
     <div class="flex items-center gap-4">
-            <img src="../../folders.png" width="56" />
-
+        <img src="/localhost-explorer/folders.png" width="56" />
         <div>
             <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                 <?= APP_NAME ?>
