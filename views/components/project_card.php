@@ -33,7 +33,7 @@ $typeStyles = [
     'arrow'     => 'text-emerald-500'
   ],
   TYPE_DIRECTORY => [
-    'gradient'  => 'from-slate-800 to-slate-950',
+    'gradient'  => 'from-slate-500 to-slate-950',
     'iconBg'    => 'bg-gradient-to-br from-slate-400/20 via-slate-200/10 to-transparent',
     'iconInner' => 'text-slate-500 dark:text-slate-400',
     'arrow'     => 'text-slate-400'
@@ -43,7 +43,9 @@ $typeStyles = [
 $style = $typeStyles[$info['projectType']] ?? $typeStyles[TYPE_DIRECTORY];
 ?>
 
-<a href="<?= $href ?>"
+<a
+  href="<?= $href ?>"
+  target="_blank"
   x-show="(filterType === 'ALL' || filterType === '<?= $info['projectType'] ?>') && (searchQuery === '' || '<?= strtolower(addslashes($name)) ?>'.includes(searchQuery.toLowerCase()))"
   class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden">
 
