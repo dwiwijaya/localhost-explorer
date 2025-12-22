@@ -8,14 +8,3 @@
 
 <script src="/localhost-explorer/assets/js/phosphor.js"></script>
 <script src="/localhost-explorer/assets/js/alpine.js" defer></script>
-
-<style>
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-</style>
