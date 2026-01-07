@@ -3,7 +3,7 @@
 ![Screenshot 1](./assets/screenshot-1.png)
 ![Screenshot 2](./assets/screenshot-2.png)
 
-> 🧭 **Clean, modern, and developer-friendly localhost dashboard**  
+> 🧭 **Clean, modern, and developer-friendly localhost dashboard**
 > Stop scrolling through folders. Instantly see, detect, and open your local projects with the correct entry point.
 
 ---
@@ -17,7 +17,7 @@ If you work with **many local projects** (Laravel, Yii2, React, WordPress, etc.)
 ✅ Detects frameworks automatically  
 ✅ Routes to the correct entry point  
 ✅ Looks clean, modern, and fast  
-✅ Requires **zero configuration**
+✅ Requires **zero configuration**  
 
 ---
 
@@ -66,12 +66,6 @@ No more guessing URLs.
 
 ---
 
-## 🖥️ Preview
-
-> A modern dashboard displaying all local projects with framework badges, system info, and smart routing — replacing the default Apache welcome page.
-
----
-
 ## 📂 Example Folder Structure
 
 ```text
@@ -87,32 +81,102 @@ No more guessing URLs.
 ````
 
 ---
+## ⚙️ Installation (Recommended)
 
-## ⚙️ Installation (1 Minute Setup)
-
-### 1️⃣ Copy the file
-
-Place `index.php` into your Apache document root:
+### 1️⃣ Clone repository into Apache document root
 
 ```bash
-/var/www/html/index.php
+cd /var/www/html
+git clone https://github.com/dwiwijaya/localhost-explorer.git
 ```
 
-### 2️⃣ (Optional) Backup Apache default page
+> ⚠️ **Important**
+> Repository **must be cloned directly inside the Apache document root**
+> (e.g. `/var/www/html` or `/srv/http`).
+
+---
+
+### 2️⃣ Enter repository directory
 
 ```bash
-sudo mv /var/www/html/index.html /var/www/html/index.html.bak
+cd localhost-explorer
 ```
 
-### 3️⃣ Open in browser
+---
+
+### 3️⃣ Run installation script
+
+```bash
+chmod +x script.sh
+./script.sh
+```
+
+The script will automatically:
+
+* ✅ Create or overwrite:
+
+  * `/var/www/html/index.php`
+  * `/var/www/html/.htaccess`
+* ✅ Redirect Apache root (`/`) to `localhost-explorer/`
+* ✅ Ensure Apache prioritizes `index.php` over `index.html`
+
+---
+
+### 4️⃣ Generated files (auto-managed)
+
+#### `/var/www/html/index.php`
+
+```php
+<?php
+header('Location: localhost-explorer/');
+exit;
+```
+
+#### `/var/www/html/.htaccess`
+
+```apache
+RewriteEngine On
+
+# Redirect root to localhost-explorer
+RewriteRule ^$ localhost-explorer/ [L]
+```
+
+---
+
+### 5️⃣ Ensure Apache index priority
+
+Make sure Apache prioritizes `index.php` before `index.html`.
+
+Edit Apache config:
+
+```bash
+sudo nano /etc/apache2/mods-enabled/dir.conf
+```
+
+Set:
+
+```apache
+DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+```
+
+Then reload Apache:
+
+```bash
+sudo systemctl reload apache2
+```
+
+---
+
+### 6️⃣ Open in browser
 
 ```text
 http://localhost/
 ```
 
-🎉 Done. Your localhost just leveled up.
+🎉 **Done. Apache root is now powered by Localhost Explorer.**
 
 ---
+
 
 ## 🧠 How Detection Works
 
