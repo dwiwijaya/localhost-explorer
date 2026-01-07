@@ -125,7 +125,7 @@ Works on:
 
 ```bash
 cd <APACHE_DOCUMENT_ROOT>
-git clone https://github.com/your-username/localhost-explorer.git
+git clone https://github.com/dwiwijaya/localhost-explorer.git
 ```
 
 Examples:
