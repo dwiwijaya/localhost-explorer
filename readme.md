@@ -66,6 +66,12 @@ No more guessing URLs.
 
 ---
 
+## 🖥️ Preview
+
+> A modern dashboard displaying all local projects with framework badges, system info, and smart routing — replacing the default Apache welcome page.
+
+---
+
 ## 📂 Example Folder Structure
 
 ```text
@@ -80,51 +86,96 @@ No more guessing URLs.
 
 ````
 
+## 📂 Required Folder Structure
+
+> ⚠️ **IMPORTANT**
+> The repository **must be placed directly inside Apache document root**.
+
+### Example:
+
+```text
+Apache Document Root
+(htdocs / www / html)
+│
+├── localhost-explorer/     ← this repository
+│   ├── index.php
+│   ├── assets/
+│   ├── install.php
+│   └── ...
+│
+├── index.php               ← auto-generated (redirect)
+├── .htaccess               ← auto-generated
+├── project-a/
+├── project-b/
+```
+
 ---
-## ⚙️ Installation (Recommended)
+
+## ⚙️ Installation (Cross-Platform)
+
+Works on:  
+✅ Linux  
+✅ Windows (XAMPP / Laragon)  
+✅ macOS  
+✅ CLI & Browser  
+
+---
 
 ### 1️⃣ Clone repository into Apache document root
 
 ```bash
-cd /var/www/html
-git clone https://github.com/dwiwijaya/localhost-explorer.git
+cd <APACHE_DOCUMENT_ROOT>
+git clone https://github.com/your-username/localhost-explorer.git
 ```
 
-> ⚠️ **Important**
-> Repository **must be cloned directly inside the Apache document root**
-> (e.g. `/var/www/html` or `/srv/http`).
+Examples:
+
+```text
+Linux    : /var/www/html
+XAMPP    : C:\xampp\htdocs
+Laragon  : C:\laragon\www
+```
 
 ---
 
-### 2️⃣ Enter repository directory
+### 2️⃣ Run installer
+
+You can run the installer using **CLI** or **Browser**.
+
+#### Option A — CLI (Recommended)
 
 ```bash
 cd localhost-explorer
+php install.php
+```
+
+#### Option B — Browser
+
+```
+http://localhost/localhost-explorer/install.php
 ```
 
 ---
 
-### 3️⃣ Run installation script
+### 3️⃣ What the installer does
 
-```bash
-chmod +x script.sh
-./script.sh
-```
+The installer will:
 
-The script will automatically:
+✅ Detect Apache document root automatically  
+  * (parent directory of the repository)*  
+  
+✅ Create or overwrite:  
+  * `index.php`  
+  * `.htaccess`
 
-* ✅ Create or overwrite:
-
-  * `/var/www/html/index.php`
-  * `/var/www/html/.htaccess`
-* ✅ Redirect Apache root (`/`) to `localhost-explorer/`
-* ✅ Ensure Apache prioritizes `index.php` over `index.html`
+✅ Backup existing files with timestamp  
+✅ Redirect Apache root (`/`) to `localhost-explorer/`  
 
 ---
 
-### 4️⃣ Generated files (auto-managed)
+### 4️⃣ Generated files
 
-#### `/var/www/html/index.php`
+#### `/index.php`
 
 ```php
 <?php
@@ -132,7 +183,7 @@ header('Location: localhost-explorer/');
 exit;
 ```
 
-#### `/var/www/html/.htaccess`
+#### `/.htaccess`
 
 ```apache
 RewriteEngine On
@@ -143,40 +194,29 @@ RewriteRule ^$ localhost-explorer/ [L]
 
 ---
 
-### 5️⃣ Ensure Apache index priority
+### 5️⃣ Apache configuration (one-time check)
 
-Make sure Apache prioritizes `index.php` before `index.html`.
-
-Edit Apache config:
-
-```bash
-sudo nano /etc/apache2/mods-enabled/dir.conf
-```
-
-Set:
+Make sure Apache prioritizes `index.php`:
 
 ```apache
-DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+DirectoryIndex index.php index.html index.htm
 ```
 
-Then reload Apache:
+> Usually already set by default in XAMPP / Laragon / Ubuntu.
 
-```bash
-sudo systemctl reload apache2
-```
+Reload Apache if needed.
 
 ---
 
 ### 6️⃣ Open in browser
 
-```text
+```
 http://localhost/
 ```
 
-🎉 **Done. Apache root is now powered by Localhost Explorer.**
+🎉 **Localhost Explorer is now your Apache root dashboard.**
 
 ---
-
 
 ## 🧠 How Detection Works
 
@@ -198,10 +238,10 @@ Localhost Explorer scans each folder and detects frameworks based on well-known 
 
 ## 🧩 Supported JavaScript Projects
 
-* ⚛️ React (CRA, Vite)
-* 🟢 Vue (Vue CLI, Vite)
-* ▲ Next.js
-* 🧪 Vanilla JS
+⚛️ React (CRA, Vite)  
+🟢 Vue (Vue CLI, Vite)  
+▲ Next.js  
+🧪 Vanilla JS  
 
 > If no production build is found, the project will be marked as **JS (dev)**.
 
@@ -209,9 +249,9 @@ Localhost Explorer scans each folder and detects frameworks based on well-known 
 
 ## 🔐 Security Considerations
 
-* 🚫 Blocks `../` path traversal
-* 🔒 Limits access strictly to document root
-* 🛡️ Uses `realpath()` validation everywhere
+🚫 Blocks `../` path traversal  
+🔒 Limits access strictly to document root  
+🛡️ Uses `realpath()` validation everywhere  
 
 Safe to use as a local development dashboard.
 
@@ -221,12 +261,9 @@ Safe to use as a local development dashboard.
 
 Planned improvements:
 
-* 🔎 Detect running dev servers (3000, 5173, etc.)
-* 🔗 Open dev server URLs directly
-* 🌙 Dark mode
-* ⭐ Favorite / pin projects
-* 🐳 Docker detection
-* 🐍 Python framework support
+🔎 Detect running dev servers (3000, 5173, etc.)  
+⭐ Favorite / pin projects  
+🐍 Python framework support  
 
 ---
 
@@ -254,4 +291,3 @@ MIT License — free to use, modify, and share.
 Built for developers who juggle **many local projects** and want a **clean, productive localhost experience**.
 
 If this tool helps you, consider ⭐ starring the repo!
-
