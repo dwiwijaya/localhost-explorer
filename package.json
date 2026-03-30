@@ -4,7 +4,8 @@
   "description": "![Screenshot 1](./assets/screenshot-1.png) ![Screenshot 2](./assets/screenshot-2.png)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "npx tailwindcss -i ./assets/css/index.css -o ./assets/css/app.css",
+    "watch:css": "npx tailwindcss -i ./assets/css/index.css -o ./assets/css/app.css --watch"
   },
   "repository": {
     "type": "git",

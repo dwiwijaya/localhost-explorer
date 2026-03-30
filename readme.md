@@ -3,7 +3,7 @@
 ![Screenshot 1](./assets/screenshot-1.png)
 ![Screenshot 2](./assets/screenshot-2.png)
 
-> 🧭 **Clean, modern, and developer-friendly localhost dashboard**  
+> 🧭 **Clean, modern, and developer-friendly localhost dashboard**
 > Stop scrolling through folders. Instantly see, detect, and open your local projects with the correct entry point.
 
 ---
@@ -17,7 +17,7 @@ If you work with **many local projects** (Laravel, Yii2, React, WordPress, etc.)
 ✅ Detects frameworks automatically  
 ✅ Routes to the correct entry point  
 ✅ Looks clean, modern, and fast  
-✅ Requires **zero configuration**
+✅ Requires **zero configuration**  
 
 ---
 
@@ -86,31 +86,135 @@ No more guessing URLs.
 
 ````
 
----
+## 📂 Required Folder Structure
 
-## ⚙️ Installation (1 Minute Setup)
+> ⚠️ **IMPORTANT**
+> The repository **must be placed directly inside Apache document root**.
 
-### 1️⃣ Copy the file
-
-Place `index.php` into your Apache document root:
-
-```bash
-/var/www/html/index.php
-```
-
-### 2️⃣ (Optional) Backup Apache default page
-
-```bash
-sudo mv /var/www/html/index.html /var/www/html/index.html.bak
-```
-
-### 3️⃣ Open in browser
+### Example:
 
 ```text
+Apache Document Root
+(htdocs / www / html)
+│
+├── localhost-explorer/     ← this repository
+│   ├── index.php
+│   ├── assets/
+│   ├── install.php
+│   └── ...
+│
+├── index.php               ← auto-generated (redirect)
+├── .htaccess               ← auto-generated
+├── project-a/
+├── project-b/
+```
+
+---
+
+## ⚙️ Installation (Cross-Platform)
+
+Works on:  
+✅ Linux  
+✅ Windows (XAMPP / Laragon)  
+✅ macOS  
+✅ CLI & Browser  
+
+---
+
+### 1️⃣ Clone repository into Apache document root
+
+```bash
+cd <APACHE_DOCUMENT_ROOT>
+git clone https://github.com/dwiwijaya/localhost-explorer.git
+```
+
+Examples:
+
+```text
+Linux    : /var/www/html
+XAMPP    : C:\xampp\htdocs
+Laragon  : C:\laragon\www
+```
+
+---
+
+### 2️⃣ Run installer
+
+You can run the installer using **CLI** or **Browser**.
+
+#### Option A — CLI (Recommended)
+
+```bash
+cd localhost-explorer
+php install.php
+```
+
+#### Option B — Browser
+
+```
+http://localhost/localhost-explorer/install.php
+```
+
+---
+
+### 3️⃣ What the installer does
+
+The installer will:
+
+✅ Detect Apache document root automatically  
+  * (parent directory of the repository)*  
+  
+✅ Create or overwrite:  
+  * `index.php`  
+  * `.htaccess`
+
+✅ Backup existing files with timestamp  
+✅ Redirect Apache root (`/`) to `localhost-explorer/`  
+
+---
+
+### 4️⃣ Generated files
+
+#### `/index.php`
+
+```php
+<?php
+header('Location: localhost-explorer/');
+exit;
+```
+
+#### `/.htaccess`
+
+```apache
+RewriteEngine On
+
+# Redirect root to localhost-explorer
+RewriteRule ^$ localhost-explorer/ [L]
+```
+
+---
+
+### 5️⃣ Apache configuration (one-time check)
+
+Make sure Apache prioritizes `index.php`:
+
+```apache
+DirectoryIndex index.php index.html index.htm
+```
+
+> Usually already set by default in XAMPP / Laragon / Ubuntu.
+
+Reload Apache if needed.
+
+---
+
+### 6️⃣ Open in browser
+
+```
 http://localhost/
 ```
 
-🎉 Done. Your localhost just leveled up.
+🎉 **Localhost Explorer is now your Apache root dashboard.**
 
 ---
 
@@ -134,10 +238,10 @@ Localhost Explorer scans each folder and detects frameworks based on well-known 
 
 ## 🧩 Supported JavaScript Projects
 
-* ⚛️ React (CRA, Vite)
-* 🟢 Vue (Vue CLI, Vite)
-* ▲ Next.js
-* 🧪 Vanilla JS
+⚛️ React (CRA, Vite)  
+🟢 Vue (Vue CLI, Vite)  
+▲ Next.js  
+🧪 Vanilla JS  
 
 > If no production build is found, the project will be marked as **JS (dev)**.
 
@@ -145,9 +249,9 @@ Localhost Explorer scans each folder and detects frameworks based on well-known 
 
 ## 🔐 Security Considerations
 
-* 🚫 Blocks `../` path traversal
-* 🔒 Limits access strictly to document root
-* 🛡️ Uses `realpath()` validation everywhere
+🚫 Blocks `../` path traversal  
+🔒 Limits access strictly to document root  
+🛡️ Uses `realpath()` validation everywhere  
 
 Safe to use as a local development dashboard.
 
@@ -157,12 +261,9 @@ Safe to use as a local development dashboard.
 
 Planned improvements:
 
-* 🔎 Detect running dev servers (3000, 5173, etc.)
-* 🔗 Open dev server URLs directly
-* 🌙 Dark mode
-* ⭐ Favorite / pin projects
-* 🐳 Docker detection
-* 🐍 Python framework support
+🔎 Detect running dev servers (3000, 5173, etc.)  
+⭐ Favorite / pin projects  
+🐍 Python framework support  
 
 ---
 
@@ -190,4 +291,3 @@ MIT License — free to use, modify, and share.
 Built for developers who juggle **many local projects** and want a **clean, productive localhost experience**.
 
 If this tool helps you, consider ⭐ starring the repo!
-
