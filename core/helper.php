@@ -23,6 +23,6 @@ function getSystemStats(): array
     'Max Execution' => ini_get('max_execution_time') . 's',
     'Upload Max Size' => ini_get('upload_max_filesize'),
     'Timezone' => date_default_timezone_get(),
-    'Server Time' => time(),
+    'PHP Info' => '',
   ];
 }

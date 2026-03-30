@@ -6,6 +6,10 @@ require_once 'core/helper.php';
 
 $location = getScanPath();
 $folders = getFolders($location['abs']);
+if (isset($_GET['phpinfo']) && $_GET['phpinfo'] == '1') {
+    phpinfo();
+    exit;
+}
 ?>
 
 <script>
@@ -77,8 +81,7 @@ $folders = getFolders($location['abs']);
                     <input
                         <?php if (count($folders) === 0) echo 'disabled'; ?>
                         type="text" x-model="searchQuery" placeholder="Search projects..."
-                        class="w-full pl-10 pr-4 py-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
-                        >
+                        class="w-full pl-10 pr-4 py-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm">
                 </div>
             </div>
 

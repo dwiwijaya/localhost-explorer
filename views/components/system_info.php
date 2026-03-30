@@ -13,11 +13,8 @@
                     <?= $label ?>
                 </p>
 
-                <?php if ($label === 'Server Time'): ?>
-                    <div x-data="{ time: <?= $value ?> }" x-init="setInterval(() => time++, 1000)"
-                        class="text-sm font-bold text-slate-700 dark:text-slate-200">
-                        <span x-text="new Date(time * 1000).toLocaleTimeString()"></span>
-                    </div>
+                <?php if ($label === 'PHP Info'): ?>
+                    <a href="?phpinfo=1" class="text-indigo-500 hover:underline">View</a>
                 <?php else: ?>
                     <p class="text-sm font-bold text-slate-700 dark:text-slate-200">
                         <?= htmlspecialchars($value) ?>
