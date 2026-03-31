@@ -3,7 +3,7 @@
 ![Screenshot 1](./assets/screenshot-1.png)
 ![Screenshot 2](./assets/screenshot-2.png)
 
-> 🧭 **Clean, modern, and developer-friendly localhost dashboard**
+> 🧭 **Clean, modern, and developer-friendly localhost dashboard** 
 > Stop scrolling through folders. Instantly see, detect, and open your local projects with the correct entry point.
 
 ---
